@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour
     Animator animator;
     Vector3 jump;
     public float jumpForce;
-    AnimationCurve curve;
+    public float gravityScale;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -27,12 +27,12 @@ public class PlayerMove : MonoBehaviour
         animator.SetFloat("Right", r);
 
         // Jump
-        if (Input.GetButton("Fire1"))
+        /*if (Input.GetButtonDown("Fire1"))
         {
             jump.y = jumpForce;
             animator.SetTrigger("Jump");
         }
-        else jump.y = rb.velocity.y;
+        else jump.y = rb.velocity.y;*/
     }
     private void FixedUpdate()
     {
@@ -48,7 +48,8 @@ public class PlayerMove : MonoBehaviour
 
         rb.velocity = (transform.forward * f + transform.right * r).normalized
             * speed * Time.fixedDeltaTime
-            + jump * Time.fixedDeltaTime;
+            + jump * Time.fixedDeltaTime 
+            + gravityScale * Vector3.down * Time.fixedDeltaTime;
 
     }
 }
