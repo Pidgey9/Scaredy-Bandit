@@ -21,7 +21,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void Update()
     {
-        if (rb.velocity == Vector3.zero) animator.SetBool("Move", false);
+        if (rb.velocity.x == 0 && rb.velocity.z == 0) animator.SetBool("Move", false);
         else animator.SetBool("Move", true);
         animator.SetFloat("Forward", f);
         animator.SetFloat("Right", r);
