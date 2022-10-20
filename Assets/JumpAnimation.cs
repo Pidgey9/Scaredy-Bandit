@@ -11,6 +11,7 @@ public class JumpAnimation : MonoBehaviour
     public float jumpHeight;
     public float jumpDuration;
     bool isJumping;
+    bool ground;
     private void Awake()
     {
         jumpTimer = 0;
@@ -18,7 +19,8 @@ public class JumpAnimation : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetButton("Fire1"))
+        ground = gameObject.GetComponent<PlayerGround>().isGrounded;
+        if (Input.GetButton("Fire1") && ground)
         {
             animator.SetBool("Jump", true);
             isJumping = true;

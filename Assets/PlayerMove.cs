@@ -25,6 +25,15 @@ public class PlayerMove : MonoBehaviour
         else animator.SetBool("Move", true);
         animator.SetFloat("Forward", f);
         animator.SetFloat("Right", r);
+        animator.SetFloat("Blend", 1);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            animator.SetFloat("Blend", 0.5f);
+        }
+        if (Input.GetKey(KeyCode.R))
+        {
+            animator.SetFloat("Blend", 0);
+        }
 
         // Jump
         /*if (Input.GetButtonDown("Fire1"))
