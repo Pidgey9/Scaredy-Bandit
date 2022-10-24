@@ -22,14 +22,15 @@ public class JumpAnimation : MonoBehaviour
         ground = gameObject.GetComponent<PlayerGround>().isGrounded;
         if (Input.GetButton("Fire1") && ground)
         {
-            animator.SetBool("Jump", true);
             isJumping = true;
         }
-        else animator.SetBool("Jump", false);
         if (isJumping)
         {
+            animator.SetBool("Jump", true);
             JumpScript();
         }
+        else animator.SetBool("Jump", false);
+
     }
     void JumpScript()
     {

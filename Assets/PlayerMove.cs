@@ -21,11 +21,14 @@ public class PlayerMove : MonoBehaviour
     }
     private void Update()
     {
+        // Mostly animators
         if (rb.velocity.x == 0 && rb.velocity.z == 0) animator.SetBool("Move", false);
         else animator.SetBool("Move", true);
         animator.SetFloat("Forward", f);
         animator.SetFloat("Right", r);
         animator.SetFloat("Blend", 1);
+        Fall();
+        // Sprint and crouch animators
         if (Input.GetKey(KeyCode.LeftShift))
         {
             animator.SetFloat("Blend", 0.5f);
@@ -51,14 +54,20 @@ public class PlayerMove : MonoBehaviour
         rota = Camera.main.transform.rotation;
         rota.x = 0;
         rota.z = 0;
+        // remove camera sickness while strafing
         if (f != 0) if ( r == 0 ) transform.rotation = rota;
         rb.angularVelocity = Vector3.zero;
 
-
+        // every move for rigidbody
         rb.velocity = (transform.forward * f + transform.right * r).normalized
             * speed * Time.fixedDeltaTime
             + jump * Time.fixedDeltaTime 
             + gravityScale * Vector3.down * Time.fixedDeltaTime;
 
+    }
+    void Fall()
+    {
+        if (rb.velocity.y < -4) animator.SetBool("Fall", true);
+        else animator.SetBool("Fall", false);
     }
 }
