@@ -6,8 +6,7 @@ using UnityEngine.AI;
 public class NavMeshMove : MonoBehaviour
 {
     NavMeshAgent agent;
-    public Transform target;
-    public Camera test;
+    Camera test;
     public Transform[] patrol;
     public int index;
     private void Awake()

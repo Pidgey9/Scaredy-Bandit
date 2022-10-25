@@ -20,19 +20,31 @@ public class Move2D : MonoBehaviour
         //move
         float v = Input.GetAxisRaw("Vertical");
         float h = Input.GetAxisRaw("Horizontal");
-        move = new Vector3(h,0,v);
+        move = new Vector3(h,0,v).normalized;
         // animators
-        animator.SetFloat("Blend", 1);
         animator.SetFloat("Forward", 1);
+        animator.SetFloat("Blend", 1);
         if (h != 0 || v != 0) animator.SetBool("Move", true);
         else animator.SetBool("Move", false);
         // bandit rotation
-        bandit = GameObject.Find("Bandit").transform;
-        if (h == 1) bandit.transform.rotation.ToEulerAngles(0, 90, 0);
+        BanditRotation(v, h);
+        // crouch
     }
     private void FixedUpdate()
     {
         rb.velocity = move * speed * Time.fixedDeltaTime 
             + Vector3.down * gravity * Time.fixedDeltaTime;
+    }
+    void BanditRotation(float v, float h)
+    {
+        bandit = GameObject.Find("Bandit").transform;
+        if (h == 1) bandit.transform.rotation = Quaternion.Euler(0, 90, 0);
+        if (h == -1) bandit.transform.rotation = Quaternion.Euler(0, -90, 0);
+        if (v == 1) bandit.transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (v == -1) bandit.transform.rotation = Quaternion.Euler(0, 180, 0);
+        if (v == 1 && h == 1) bandit.transform.rotation = Quaternion.Euler(0, 45, 0);
+        if (v == 1 && h == -1) bandit.transform.rotation = Quaternion.Euler(0, -45, 0);
+        if (v == -1 && h == 1) bandit.transform.rotation = Quaternion.Euler(0, 135, 0);
+        if (v == -1 && h == -1) bandit.transform.rotation = Quaternion.Euler(0, -135, 0);
     }
 }
