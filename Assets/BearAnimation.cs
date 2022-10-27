@@ -11,7 +11,7 @@ public class BearAnimation : MonoBehaviour
     }
     private void Update()
     {
-        if (GetComponent<NavMeshMove>() == true) animator.SetBool("WalkForward", true);
-        else animator.SetBool("WalkForward", false);
+        if (GetComponent<NavMeshMove>() == true) animator.SetBool("RunForward", true);
+        else animator.SetBool("RunForward", false);
     }
 }

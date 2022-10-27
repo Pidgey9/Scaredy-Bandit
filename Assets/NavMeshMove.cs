@@ -27,7 +27,7 @@ public class NavMeshMove : MonoBehaviour
         else index = 0;
         if (index < patrol.Length) agent.SetDestination(patrol[index].position);
     }
-    void HitRay()
+    /*void HitRay()
     {
         RaycastHit hit;
         if (Input.GetMouseButtonDown(0))
@@ -39,5 +39,5 @@ public class NavMeshMove : MonoBehaviour
             }
         }
 
-    }
+    }*/
 }
