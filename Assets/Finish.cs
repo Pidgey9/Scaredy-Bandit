@@ -9,7 +9,11 @@ public class Finish : MonoBehaviour
     {
         if (other.CompareTag("Finish"))
         {
-            Debug.Log("WIN");
+            SceneManager.LoadScene(1);
+        }
+        if (other.CompareTag("Enemy"))
+        {
+            SceneManager.LoadScene(2);
         }
     }
 }
